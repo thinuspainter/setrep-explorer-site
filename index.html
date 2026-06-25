@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SETREP — Settlement Config Explorer</title>
+<style>
+  :root{--ink:#1f2630;--muted:#69727d;--line:#e2e6eb;--bg:#f6f7f9;--card:#fff;--eset:#1a936f;--fset:#2563a8;--mstrp:#7b4ea3}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+  header{background:#11212f;color:#fff;padding:22px 28px}
+  header h1{margin:0;font-size:18px;font-weight:600;letter-spacing:.2px}
+  header p{margin:6px 0 0;font-size:13px;color:#b9c4cf;max-width:680px}
+  .wrap{max-width:980px;margin:0 auto;padding:28px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;transition:.15s;text-decoration:none;color:inherit}
+  a.card:hover{border-color:var(--eset);box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-1px)}
+  .card .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .card h2{margin:0;font-size:16px;font-weight:700}
+  .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px}
+  .badge.live{background:#e6f4ee;color:var(--eset)}
+  .badge.soon{background:#eef2f5;color:var(--muted)}
+  .card p{margin:0;font-size:12.5px;color:var(--muted)}
+  .card.placeholder{border-style:dashed;opacity:.8}
+  .note{margin-top:26px;font-size:12.5px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .note code{background:#eef2f5;padding:1px 6px;border-radius:4px;font-size:11.5px}
+  .note h3{margin:0 0 8px;font-size:13px;color:var(--ink)}
+  footer{max-width:980px;margin:0 auto;padding:0 28px 36px;font-size:11.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>SETREP — Settlement Config Dependency Explorer</h1>
+  <p>Interactive dependency &amp; lineage explorer for RSE settlement configurations. Open a configuration below, or use any explorer's <b>Upload config</b> button to load a different Oracle export. Configurations open password-protected.</p>
+</header>
+<div class="wrap">
+  <div class="grid">
+
+    <a class="card" href="default/">
+      <div class="top"><h2>Default configuration</h2><span class="badge live">Live</span></div>
+      <p>Sample settlement configuration, preloaded. Use <b>Upload config</b> inside to swap in any other export.</p>
+      <p style="color:var(--eset);font-weight:600;font-size:11.5px">Open explorer &rarr;</p>
+    </a>
+
+    <!-- DUPLICATE THIS CARD for each new config / manager. Point href to the new folder. -->
+    <div class="card placeholder">
+      <div class="top"><h2>Add a config</h2><span class="badge soon">Template</span></div>
+      <p>Copy the <code>default/</code> folder to e.g. <code>config-a/</code>, drop in that config's locked build, then duplicate this card with <code>href="config-a/"</code>.</p>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <h3>Adding a configuration / manager</h3>
+    Each folder is one self-contained explorer. To add one: (1) copy <code>default/</code> to a new folder named for the config (lowercase, no spaces); (2) replace its <code>index.html</code> with a locked build that has that config preloaded (ask the tool owner to generate it), or leave the upload-enabled build so the manager loads their own export; (3) add a card above pointing at the new folder. Commit and push — GitHub Pages serves it automatically within a minute.
+  </div>
+</div>
+<footer>Enerweb · SETREP / RSE settlement configuration tooling. Parsing happens entirely in the browser — no data leaves the machine.</footer>
+</body>
+</html>
